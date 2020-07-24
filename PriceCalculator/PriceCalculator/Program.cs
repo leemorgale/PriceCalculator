@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PriceCalculator
+namespace PriceCalculator.App
 {
     class Program
     {

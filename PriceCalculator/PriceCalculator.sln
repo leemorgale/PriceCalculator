@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator", "PriceCalculator\PriceCalculator.csproj", "{E1505C54-BB04-4E14-AA5C-2E53F4E0BA61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.App", "PriceCalculator\PriceCalculator.App.csproj", "{E1505C54-BB04-4E14-AA5C-2E53F4E0BA61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.Test", "PriceCalculator.Test\PriceCalculator.Test.csproj", "{DCA419FB-F7C4-419F-B55C-E794C2AA4001}"
 EndProject

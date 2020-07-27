@@ -23,11 +23,11 @@ namespace PriceCalculator.App.App
             foreach (var specialOffer in _specialOffers.GetSpecialOfferRules())
             {
                 // calculate discount from special offer
-                var specialOfferDiscount = GetDiscountedAmount(specialOffer, shoppingBasket);
-                if (discountAmount > 0)
+                decimal specialOfferDiscount = GetDiscountedAmount(specialOffer, shoppingBasket);
+                if (specialOfferDiscount > 0)
                 {
                     discountAmount += specialOfferDiscount;
-                    appliedSpecialOffers.Add(new SpecialOfferApplied(specialOffer, discountAmount));
+                    appliedSpecialOffers.Add(new SpecialOfferApplied(specialOffer, specialOfferDiscount));
                 }
             }
 
@@ -60,8 +60,9 @@ namespace PriceCalculator.App.App
             }
 
             // calculate the discount based on the basket items
-            decimal percentageDiscount = specialOfferRule.SpecialOfferDiscountRule.DiscountPercent / 100;
-            return specialOfferRule.SpecialOfferDiscountRule.Product.Price * percentageDiscount * discountAppliedCount;
+            decimal percentageDiscount = Decimal.Divide(specialOfferRule.SpecialOfferDiscountRule.DiscountPercent, 100);
+            decimal discountAmount = Decimal.Multiply(specialOfferRule.SpecialOfferDiscountRule.Product.Price, percentageDiscount);
+            return Decimal.Multiply(discountAmount, discountAppliedCount);
         }
     }
 }

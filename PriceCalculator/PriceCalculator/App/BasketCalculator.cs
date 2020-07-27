@@ -56,7 +56,7 @@ namespace PriceCalculator.App.App
             int discountAppliedCount = Math.Min(specialOfferRuleMatchCount, discountedItemCount);
             if (specialOfferRule.SpecialOfferDiscountRule.MaximumQuantity.HasValue)
             {
-                discountAppliedCount = discountedItemCount % specialOfferRule.SpecialOfferDiscountRule.MaximumQuantity.Value;
+                discountAppliedCount = Math.Min(discountedItemCount, specialOfferRule.SpecialOfferDiscountRule.MaximumQuantity.Value);
             }
 
             // calculate the discount based on the basket items

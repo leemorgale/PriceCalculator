@@ -1,9 +1,9 @@
 ﻿using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Basket;
 using PriceCalculator.App.Entities.SpecialOffers;
-using PriceCalculator.App.Interfaces;
 using System;
 using System.Collections.Generic;
+using PriceCalculator.App.Interfaces;
 
 namespace PriceCalculator.App.App
 {

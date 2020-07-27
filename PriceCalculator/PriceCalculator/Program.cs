@@ -4,19 +4,20 @@ using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Basket;
 using PriceCalculator.App.Entities.Product;
 using PriceCalculator.App.Entities.SpecialOffers;
-using PriceCalculator.App.Interfaces;
+using PriceCalculator.App.App;
 using System;
 using System.Collections.Generic;
+using PriceCalculator.App.Interfaces;
 
 namespace PriceCalculator.App
 {
     class Program
     {
         static void Main(string[] args)
-        {
+        {            
             if (args == null || args.Length == 0)
             {
-                Console.WriteLine("Please enter names of ");
+                Console.WriteLine("Please enter some basket items");
                 Console.ReadLine();
             }
             else
@@ -37,19 +38,10 @@ namespace PriceCalculator.App
                                     new SpecialOfferDiscountRule(products.GetProductByName("bread"), 50, 1));
                 SpecialOffers specialOffers = new SpecialOffers(new List<SpecialOfferRule>() { apples10percentOff, twoCans1BreadLoaf });
 
-                // get input 
-                IShoppingBasketInput shoppingBasketInput = new ShoppingBasketInput();
-                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateShoppingBasket(args, products);
-
-                // calculate snopping basket price
-                IBasketCalculator basketCalculator = new BasketCalculator(specialOffers);
-                ShoppingBasketPrice shoppingBasketPrice = basketCalculator.CalculatePrice(shoppingBasket);
-
-                // write output
-                IShoppingBasketPriceOutput shoppingBacketConsoleOutput = new ShoppingBasketPriceOutput();
-                var consoleOutput = shoppingBacketConsoleOutput.GetOutputString(shoppingBasketPrice);
-
-                Console.WriteLine(consoleOutput);
+                // process input 
+                IAppMain appMain = new AppMain(products, specialOffers);
+                var output = appMain.Process(args);
+                Console.WriteLine(output);
             }
         }
     }

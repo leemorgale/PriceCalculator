@@ -1,7 +1,7 @@
 ﻿using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Basket;
-using PriceCalculator.App.Interfaces;
 using System.Text;
+using PriceCalculator.App.Interfaces;
 
 namespace PriceCalculator.App.App
 {

@@ -45,25 +45,6 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void CheckInvalidInput_ThrowsInvalidInputExceptionn()
-        {
-            string input = "Not In Product";
-            string[] args = { input };
-            var products = TestDataHelper.TestDataHelper.EmptyProducts();
-            IBasketInputReader shoppingBasketInput = new BasketInputReader();
-
-            try
-            {
-                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, null);
-                Assert.Fail("Should have thrown InvalidProductArgumentException exception");
-            }
-            catch (InvalidInputException ex)
-            {
-                Assert.IsTrue(ex.Message.ToLower().Contains(input.ToLower()));
-            }
-        }
-
-        [TestMethod]
         public void CheckNoProductToBuyIfNull_ThrowsNoProductToBuyException()
         {
             string input = "Not In Product";

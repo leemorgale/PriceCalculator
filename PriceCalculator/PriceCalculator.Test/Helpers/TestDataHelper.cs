@@ -13,7 +13,7 @@ namespace PriceCalculator.Test.Helpers
             Product bread = new Product(2, "Bread", 0.80m);
             Product milk = new Product(3, "Milk", 1.30m);
             Product apples = new Product(4, "Apple", "Apples", 1.00m);
-            return new ProductsDL(new List<Product>() { beans, bread, milk, apples });
+            return new ProductsDL(new List<Product>() { beans, bread, milk, apples }); 
         }
 
         public static SpecialOffersDL GetAppleBeansBreadSpecialOffers(ProductsDL productsDL)

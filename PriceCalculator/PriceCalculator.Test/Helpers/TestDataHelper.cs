@@ -16,15 +16,15 @@ namespace PriceCalculator.Test.Helpers
             return new ProductsDL(new List<Product>() { beans, bread, milk, apples });
         }
 
-        public static SpecialOffersDL GetAppleBeansBreadSpecialOffers(ProductsDL products)
+        public static SpecialOffersDL GetAppleBeansBreadSpecialOffers(ProductsDL productsDL)
         {
             // 10 % off apples
-            SpecialOfferRule apples10percentOff = new SpecialOfferRule(new SpecialOfferMatchRule(products.GetProductByName("apple"), 1),
-                   new SpecialOfferDiscountRule(products.GetProductByName("apple"), 10));
+            SpecialOfferRule apples10percentOff = new SpecialOfferRule(new SpecialOfferMatchRule(productsDL.GetProductByName("apple"), 1),
+                   new SpecialOfferDiscountRule(productsDL.GetProductByName("apple"), 10));
 
             // buy 2 cans of beans, get 1 loaf of bread 50% off
-            SpecialOfferRule twoCans1BreadLoaf = new SpecialOfferRule(new SpecialOfferMatchRule(products.GetProductByName("beans"), 2),
-                                new SpecialOfferDiscountRule(products.GetProductByName("bread"), 50, 1));
+            SpecialOfferRule twoCans1BreadLoaf = new SpecialOfferRule(new SpecialOfferMatchRule(productsDL.GetProductByName("beans"), 2),
+                                new SpecialOfferDiscountRule(productsDL.GetProductByName("bread"), 50, 1));
             SpecialOffersDL specialOffers = new SpecialOffersDL(new List<SpecialOfferRule>() { apples10percentOff, twoCans1BreadLoaf });
             return specialOffers;
         }

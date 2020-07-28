@@ -43,5 +43,23 @@ namespace PriceCalculator.Test
                 Assert.IsTrue(ex.Message.ToLower().Contains(input.ToLower()));
             }
         }
+
+        public void CheckInvalidInput_ThrowsNoProductToBuyException()
+        {
+            string input = "Not In Product";
+            string[] args = { input };
+            var products = TestDataHelper.TestDataHelper.EmptyProducts();
+            IBasketInputReader shoppingBasketInput = new BasketInputReader();
+
+            try
+            {
+                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, products);
+                Assert.Fail("Should have thrown InvalidProductArgumentException exception");
+            }
+            catch (NoProductToBuyException ex)
+            {
+                Assert.IsTrue(ex.Message.ToLower().Contains("no products to purchase"));
+            }
+        }
     }
 }

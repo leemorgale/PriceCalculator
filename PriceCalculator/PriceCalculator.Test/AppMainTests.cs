@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriceCalculator.App;
+using PriceCalculator.App.Exceptions;
 using PriceCalculator.App.Interfaces;
 
 namespace PriceCalculator.Test
@@ -19,6 +20,20 @@ namespace PriceCalculator.Test
             Assert.IsTrue(output.Contains("Subtotal: £3.10"));
             Assert.IsTrue(output.Contains("Apples 10% off: -10p"));
             Assert.IsTrue(output.Contains("Total: £3.00"));
+        }
+
+        [TestMethod]
+        public void TestAppleMilkBread_WithNoSpecialOffers()
+        {
+            string[] args = { "Apple", "Milk", "Bread" };
+            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.TestDataHelper.EmptySpecialOffers(products);
+            IAppMain appMain = new AppMain(products, specialOffers);
+            var output = appMain.Process(args);
+
+            Assert.IsTrue(output.Contains("Subtotal: £3.10"));
+            Assert.IsTrue(output.Contains("(No offers available)"));
+            Assert.IsTrue(output.Contains("Total: £3.10"));
         }
 
         [TestMethod]
@@ -104,6 +119,25 @@ namespace PriceCalculator.Test
             Assert.IsTrue(output.Contains("Subtotal: 0p"));
             Assert.IsTrue(output.Contains("(No offers available)"));
             Assert.IsTrue(output.Contains("Total: 0p"));
+        }
+
+        [TestMethod]
+        public void TestAppleMilkBread_WithNoProducts()
+        {
+            string[] args = { "Apple", "Milk", "Bread" };
+            var products = TestDataHelper.TestDataHelper.EmptyProducts();
+            var specialOffers = TestDataHelper.TestDataHelper.EmptySpecialOffers(products);
+
+            try
+            {
+                IAppMain appMain = new AppMain(null, specialOffers);
+                var output = appMain.Process(args);
+                Assert.Fail("Should have thrown InvalidProductArgumentException exception");
+            }
+            catch (NoProductToBuyException ex)
+            {
+                Assert.IsTrue(ex.Message == "no products to purchase");
+            }
         }
     }
 }

@@ -14,7 +14,11 @@ namespace PriceCalculator.App.DataLayer
 
         public Product GetProductByName(string name)
         {
-            return _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
+            if(_products == null)
+            {
+                return null;
+            }
+            return  _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
         }
     }
 }

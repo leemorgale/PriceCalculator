@@ -17,7 +17,7 @@ namespace PriceCalculator.App
         {
             try
             {
-                // Create Product List for Demo
+                // Create Product List for example in paper
                 Products products = new Products(new List<Product>() { 
                     new Product(1, "Beans", 0.65m),
                     new Product(2, "Bread", 0.80m), 

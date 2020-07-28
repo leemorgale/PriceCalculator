@@ -4,6 +4,11 @@
     {
         public SpecialOfferDiscountRule(Product.Product product, decimal discountPercent, int? maximumQuantity = null)
         {
+            if (product == null)
+            {
+                throw new System.ArgumentNullException("product");
+            }
+
             Product = product;
             DiscountPercent = discountPercent;
             MaximumQuantity = maximumQuantity;

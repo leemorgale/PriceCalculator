@@ -18,7 +18,7 @@ namespace PriceCalculator.App.DataLayer
             {
                 return null;
             }
-            return  _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
+            return  _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower() || p.Description.ToLower() == name.ToLower());
         }
     }
 }

@@ -9,7 +9,7 @@ namespace PriceCalculator.Test
     public class AppMainTests
     {
         [TestMethod]
-        public void TestAppleMilkBread_WithAppleSpecialOffer()
+        public void TestSet1_AppleMilkBread_WithAppleSpecialOffer()
         {
             string[] args = { "Apple", "Milk", "Bread" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -23,7 +23,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestAppleMilkBread_WithNoSpecialOffers()
+        public void TestSet1_AppleMilkBread_WithNoSpecialOffers()
         {
             string[] args = { "Apple", "Milk", "Bread" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -37,7 +37,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestMilk_WithNoAvailbleOffers()
+        public void TestSet1_Milk_WithNoAvailbleOffers()
         {
             string[] args = { "Milk" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -51,7 +51,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestApple_WithSpecialOffers()
+        public void TestSet1_Apple_WithSpecialOffers()
         {
             string[] args = { "Apple" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -65,7 +65,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestTwoBeans_WithHalfPriceBreadOffer()
+        public void TestSet1_TwoBeans_WithHalfPriceBreadOffer()
         {
             string[] args = { "Beans", "Beans", "Bread" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -79,7 +79,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestTwoBeans_WithHalfPriceNoBread()
+        public void TestSet1_TwoBeans_WithHalfPriceNoBread()
         {
             string[] args = { "Beans", "Beans" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -93,7 +93,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestTwoBeansAndApple_WithHalfPriceBreadOffer()
+        public void TestSet1_TwoBeansAndApple_WithHalfPriceBreadOffer()
         {
             string[] args = { "Beans", "Beans", "Bread", "Apple" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -108,7 +108,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestNoArgs_OutputsZeroTotals()
+        public void TestSet1_NoArgs_OutputsZeroTotals()
         {
             string[] args = { };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
@@ -122,7 +122,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestAppleMilkBread_WithNoProducts()
+        public void TestSet2_TestAppleMilkBread_WithNoProducts()
         {
             string[] args = { "Apple", "Milk", "Bread" };
             var products = TestDataHelper.TestDataHelper.EmptyProducts();
@@ -138,6 +138,35 @@ namespace PriceCalculator.Test
             {
                 Assert.IsTrue(ex.Message == "no products to purchase");
             }
+        }
+
+        [TestMethod]
+        public void TestSet3_3Oranges_1appleFree_90percentoffstrawberries()
+        {
+            string[] args = { "apple","orange","orange","orange", "strawberries" };
+            var products = TestDataHelper.TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
+            var specialOffers = TestDataHelper.TestDataHelper.GetSpecialOffers3oranges1applefree(products);
+            IAppMain appMain = new AppMain(products, specialOffers);
+            var output = appMain.Process(args);
+
+            Assert.IsTrue(output.Contains("Subtotal: £5.40"));
+            Assert.IsTrue(output.Contains("Strawberries 90% off: -72p"));
+            Assert.IsTrue(output.Contains("Apples 100% off: -£1.00"));
+            Assert.IsTrue(output.Contains("Total: £3.68"));
+        }
+
+        [TestMethod]
+        public void TestSet3_NoOffers()
+        {
+            string[] args = { "apple", "orange", "orange" };
+            var products = TestDataHelper.TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
+            var specialOffers = TestDataHelper.TestDataHelper.GetSpecialOffers3oranges1applefree(products);
+            IAppMain appMain = new AppMain(products, specialOffers);
+            var output = appMain.Process(args);
+
+            Assert.IsTrue(output.Contains("Subtotal: £3.40"));
+            Assert.IsTrue(output.Contains("(No offers available)"));
+            Assert.IsTrue(output.Contains("Total: £3.40"));
         }
     }
 }

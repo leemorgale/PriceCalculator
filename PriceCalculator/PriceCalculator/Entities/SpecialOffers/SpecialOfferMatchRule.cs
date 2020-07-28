@@ -4,6 +4,11 @@
     {
         public SpecialOfferMatchRule(Product.Product product, int minimumQuantity = 1)
         {
+            if(product == null)
+            {
+                throw new System.ArgumentNullException("product");
+            }
+
             MinimumQuantity = minimumQuantity;
             Product = product;
         }

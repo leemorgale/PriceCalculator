@@ -47,7 +47,7 @@ namespace PriceCalculator.Test.TestDataHelper
             Product strawberries = new Product(2, "Strawberries", 0.80m);
             Product milk = new Product(3, "Milk", 1.30m);
             Product apples = new Product(4, "Apple", "Apples", 1.00m);
-            Product oranges = new Product(5, "Oranges", 1.20m);
+            Product oranges = new Product(5, "orange", "Oranges", 1.20m);
             return new Products(new List<Product>() { beans, strawberries, milk, apples, oranges });
         }
 

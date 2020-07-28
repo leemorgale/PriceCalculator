@@ -26,6 +26,7 @@ namespace PriceCalculator.App
                 SpecialOfferRule apples10percentOff = new SpecialOfferRule(
                     new SpecialOfferMatchRule(productsDL.GetProductByName("apple"), 1),
                     new SpecialOfferDiscountRule(productsDL.GetProductByName("apple"), 10));
+
                 // Offer 2: Buy 2 cans of beans get 1 loaf of bread 50 percent off
                 SpecialOfferRule twoCans1BreadLoaf = new SpecialOfferRule(
                     new SpecialOfferMatchRule(productsDL.GetProductByName("beans"), 2),

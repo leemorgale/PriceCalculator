@@ -9,21 +9,26 @@ namespace PriceCalculator.App.App
 {
     public class BasketCalculator : IBasketCalculator
     {
-        private readonly SpecialOffers _specialOffers;
-        public BasketCalculator(SpecialOffers specialOffers)
+        private readonly SpecialOffersDL _specialOffersDL;
+        public BasketCalculator(SpecialOffersDL specialOffersDL)
         {
-            _specialOffers = specialOffers;
+            _specialOffersDL = specialOffersDL;
         }
 
         public CalculatedPrice CalculatePrice(ShoppingBasket shoppingBasket)
         {
+            if(shoppingBasket == null)
+            {
+                throw new ArgumentNullException(nameof(shoppingBasket));
+            }
+
             var appliedSpecialOffers = new List<SpecialOfferApplied>();
             var discountAmount = 0.0m;
 
             // check if special offers apply to basket
-            foreach (var specialOffer in _specialOffers.GetSpecialOfferRules())
+            foreach (var specialOffer in _specialOffersDL.GetSpecialOfferRules())
             {
-                decimal specialOfferDiscount = GetDiscountedAmount(specialOffer, shoppingBasket);
+                decimal specialOfferDiscount = CalculateDiscountAmount(specialOffer, shoppingBasket);
                 if (specialOfferDiscount > 0)
                 {
                     // special offer is applied
@@ -38,7 +43,7 @@ namespace PriceCalculator.App.App
             return new CalculatedPrice(subtotal, total, appliedSpecialOffers);
         }
 
-        public decimal GetDiscountedAmount(SpecialOfferRule specialOfferRule, ShoppingBasket shoppingBasket)
+        private decimal CalculateDiscountAmount(SpecialOfferRule specialOfferRule, ShoppingBasket shoppingBasket)
         {
             // SpecialOfferRule product not matched basket
             int specialOfferRuleMatchCount = shoppingBasket.GetItemCountById(specialOfferRule.SpecialOfferMatchRule.Product.Id) / specialOfferRule.SpecialOfferMatchRule.MinimumQuantity;

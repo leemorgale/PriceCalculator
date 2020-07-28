@@ -7,26 +7,26 @@ namespace PriceCalculator.App.App
 {
     public class BasketPriceWriter : IBasketPriceWriter
     {
-        public string GetOutputString(CalculatedPrice shoppingBasketPrice)
+        public string GetOutputString(CalculatedPrice calculatedPrice)
         {
             StringBuilder output = new StringBuilder();
-            output.AppendLine("Subtotal: " + ToMoneyString(shoppingBasketPrice.Subtotal));
-            if (shoppingBasketPrice.SpecialOffersApplied.Count == 0)
+            output.AppendLine($"Subtotal: {ToMoneyString(calculatedPrice.Subtotal)}");
+            if (calculatedPrice.SpecialOffersApplied.Count == 0)
             {
                 output.AppendLine("(No offers available)");
             }
             else
             {
-                foreach (var specialOfferApplied in shoppingBasketPrice.SpecialOffersApplied)
+                foreach (var specialOfferApplied in calculatedPrice.SpecialOffersApplied)
                 {
                     var productName = specialOfferApplied.SpecialOfferRule.SpecialOfferDiscountRule.Product.Description;
                     var percentageOff = specialOfferApplied.SpecialOfferRule.SpecialOfferDiscountRule.DiscountPercent;
                     var amountOff = decimal.Round(specialOfferApplied.DiscountedAmount, 2, MidpointRounding.AwayFromZero);
                     //Apples 10 % off: -10p
-                    output.AppendLine(string.Format("{0} {1}% off: -{2}", productName, percentageOff, ToMoneyString(amountOff)));
+                    output.AppendLine($"{productName} {percentageOff}% off: -{ToMoneyString(amountOff)}");
                 }
             }
-            output.AppendLine("Total: " + ToMoneyString(shoppingBasketPrice.Total));
+            output.AppendLine("Total: " + ToMoneyString(calculatedPrice.Total));
             return output.ToString();
         }
 

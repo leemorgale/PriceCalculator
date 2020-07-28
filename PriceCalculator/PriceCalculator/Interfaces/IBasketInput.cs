@@ -5,6 +5,6 @@ namespace PriceCalculator.App.Interfaces
 {
     public interface IBasketInputReader
     {
-        ShoppingBasket CreateBasketFromInput(string[] args, Products products);
+        ShoppingBasket CreateBasketFromInput(string[] args, ProductsDL productsDL);
     }
 }

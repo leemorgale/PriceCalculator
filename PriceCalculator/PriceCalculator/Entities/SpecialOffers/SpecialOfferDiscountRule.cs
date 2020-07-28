@@ -1,20 +1,17 @@
-﻿namespace PriceCalculator.App.Entities.SpecialOffers
+﻿using PriceCalculator.App.Entities.Products;
+
+namespace PriceCalculator.App.Entities.SpecialOffers
 {
     public class SpecialOfferDiscountRule
     {
-        public SpecialOfferDiscountRule(Product.Product product, decimal discountPercent, int? maximumQuantity = null)
+        public SpecialOfferDiscountRule(Product product, decimal discountPercent, int? maximumQuantity = null)
         {
-            if (product == null)
-            {
-                throw new System.ArgumentNullException("product");
-            }
-
-            Product = product;
+            Product = product ?? throw new System.ArgumentNullException(nameof(product));
             DiscountPercent = discountPercent;
             MaximumQuantity = maximumQuantity;
         }
 
-        public Product.Product Product { get; private set; }
+        public Product Product { get; private set; }
         public decimal DiscountPercent { get; private set; }
         public int? MaximumQuantity { get; private set; }
     }

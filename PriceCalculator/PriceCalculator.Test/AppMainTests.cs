@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriceCalculator.App;
 using PriceCalculator.App.Exceptions;
 using PriceCalculator.App.Interfaces;
+using PriceCalculator.Test.Helpers;
 
 namespace PriceCalculator.Test
 {
@@ -9,11 +10,11 @@ namespace PriceCalculator.Test
     public class AppMainTests
     {
         [TestMethod]
-        public void TestSet1_AppleMilkBread_WithAppleSpecialOffer()
+        public void TestSet1AppleMilkBreadWithAppleSpecialOffer()
         {
             string[] args = { "Apple", "Milk", "Bread" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -23,11 +24,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_AppleMilkBread_WithNoSpecialOffers()
+        public void TestSet1AppleMilkBreadWithNoSpecialOffers()
         {
             string[] args = { "Apple", "Milk", "Bread" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.EmptySpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.EmptySpecialOffers();
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -37,11 +38,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_Milk_WithNoAvailbleOffers()
+        public void TestSet1MilkWithNoAvailbleOffers()
         {
             string[] args = { "Milk" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -51,11 +52,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_Apple_WithSpecialOffers()
+        public void TestSet1AppleWithSpecialOffers()
         {
             string[] args = { "Apple" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -65,11 +66,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_TwoBeans_WithHalfPriceBreadOffer()
+        public void TestSet1TwoBeansWithHalfPriceBreadOffer()
         {
             string[] args = { "Beans", "Beans", "Bread" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -79,11 +80,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_TwoBeans_WithHalfPriceNoBread()
+        public void TestSet1TwoBeansWithHalfPriceNoBread()
         {
             string[] args = { "Beans", "Beans" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -93,11 +94,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_TwoBeansAndApple_WithHalfPriceBreadOffer()
+        public void TestSet1TwoBeansAndAppleWithHalfPriceBreadOffer()
         {
             string[] args = { "Beans", "Beans", "Bread", "Apple" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -108,11 +109,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet1_NoArgs_OutputsZeroTotals()
+        public void TestSet1NoArgsOutputsZeroTotals()
         {
             string[] args = { };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            var specialOffers = TestDataHelper.TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
+            var specialOffers = TestDataHelper.GetAppleBeansBreadSpecialOffers(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -122,11 +123,10 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet2_TestAppleMilkBread_WithNoProducts()
+        public void TestSet2TestAppleMilkBreadWithNoProducts()
         {
             string[] args = { "Apple", "Milk", "Bread" };
-            var products = TestDataHelper.TestDataHelper.EmptyProducts();
-            var specialOffers = TestDataHelper.TestDataHelper.EmptySpecialOffers(products);
+            var specialOffers = TestDataHelper.EmptySpecialOffers();
 
             try
             {
@@ -141,11 +141,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet3_3Oranges_1appleFree_90percentoffstrawberries()
+        public void TestSet33Oranges1appleFree90percentoffstrawberries()
         {
             string[] args = { "apple","orange","orange","orange", "strawberries" };
-            var products = TestDataHelper.TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
-            var specialOffers = TestDataHelper.TestDataHelper.GetSpecialOffers3oranges1applefree(products);
+            var products = TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
+            var specialOffers = TestDataHelper.GetSpecialOffers3oranges1applefree(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 
@@ -156,11 +156,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void TestSet3_NoOffers()
+        public void TestSet3NoOffers()
         {
             string[] args = { "apple", "orange", "orange" };
-            var products = TestDataHelper.TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
-            var specialOffers = TestDataHelper.TestDataHelper.GetSpecialOffers3oranges1applefree(products);
+            var products = TestDataHelper.GetProductBeansStrawberriesMilkApplesOranges();
+            var specialOffers = TestDataHelper.GetSpecialOffers3oranges1applefree(products);
             IAppMain appMain = new AppMain(products, specialOffers);
             var output = appMain.Process(args);
 

@@ -1,13 +1,9 @@
-﻿using PriceCalculator.App.DataLayer;
-using PriceCalculator.App.Entities.Basket;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PriceCalculator.App.Entities.Basket;
 
 namespace PriceCalculator.App.Interfaces
 {
     public interface IBasketPriceWriter
     {
-        string GetOutputString(CalculatedPrice shoppingBasketPrice);
+        string GetOutputString(CalculatedPrice calculatedPrice);
     }
 }

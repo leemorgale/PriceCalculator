@@ -1,19 +1,20 @@
 ﻿using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Basket;
-using System.Text;
 using PriceCalculator.App.Interfaces;
 using PriceCalculator.App.Exceptions;
+using PriceCalculator.App.Entities.Products;
+using System.Globalization;
 
 namespace PriceCalculator.App.App
 {
     public class BasketInputReader : IBasketInputReader
     {
-        public ShoppingBasket CreateBasketFromInput(string[] args, Products products)
+        public ShoppingBasket CreateBasketFromInput(string[] args, ProductsDL productsDL)
         {
             ShoppingBasket shoppingBasket = new ShoppingBasket();
 
             // check data is valid first
-            if (products == null)
+            if (productsDL == null)
             {
                 throw new NoProductToBuyException("no products to purchase");
             }
@@ -25,16 +26,15 @@ namespace PriceCalculator.App.App
             // read arguments
             foreach (var arg in args)
             {
-                var input = arg.Trim().ToLower();
-
-                var product = products.GetProductByName(input);
+                string argToLower = arg.Trim().ToLower(CultureInfo.InvariantCulture);
+                Product product = productsDL.GetProductByName(name: argToLower);
                 if (product != null)
                 {
                     shoppingBasket.AddItem(product);
                 }
                 else
                 {
-                    throw new InvalidInputException(input + " is not a valid product");
+                    throw new InvalidInputException($"{argToLower} is not a valid product");
                 }
             }
             return shoppingBasket;

@@ -1,13 +1,13 @@
-﻿using PriceCalculator.App.Entities.Product;
+﻿using PriceCalculator.App.Entities.Products;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace PriceCalculator.App.DataLayer
 {
-    public class Products
+    public class ProductsDL
     {
         private List<Product> _products;
-        public Products(List<Product> products)
+        public ProductsDL(List<Product> products)
         {
             _products = products;
         }
@@ -18,7 +18,8 @@ namespace PriceCalculator.App.DataLayer
             {
                 return null;
             }
-            return  _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower() || p.Description.ToLower() == name.ToLower());
+            return _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower()
+                                                 || p.Description.ToLower() == name.ToLower());
         }
     }
 }

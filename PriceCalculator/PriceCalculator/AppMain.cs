@@ -2,35 +2,32 @@
 using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Basket;
 using PriceCalculator.App.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PriceCalculator.App
 {
     public class AppMain : IAppMain
     {
-        private readonly Products _products;
-        private readonly SpecialOffers _specialOffers;
-        public AppMain(Products products,
-                   SpecialOffers specialOffers)
+        private readonly ProductsDL _productsDL;
+        private readonly SpecialOffersDL _specialOffersDL;
+        public AppMain(ProductsDL productsDL,
+                   SpecialOffersDL specialOffersDL)
         {
-            _products = products;
-            _specialOffers = specialOffers;
+            _productsDL = productsDL;
+            _specialOffersDL = specialOffersDL;
         }
         public string Process(string[] args)
         {
             // read input from user
-            IBasketInputReader shoppingBasketInput = new BasketInputReader();
-            ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, _products);
+            IBasketInputReader basketInputReader = new BasketInputReader();
+            ShoppingBasket shoppingBasket = basketInputReader.CreateBasketFromInput(args, _productsDL);
 
             // calculate snopping basket price
-            IBasketCalculator basketCalculator = new BasketCalculator(_specialOffers);
-            CalculatedPrice shoppingBasketPrice = basketCalculator.CalculatePrice(shoppingBasket);
+            IBasketCalculator basketCalculator = new BasketCalculator(_specialOffersDL);
+            CalculatedPrice calculatedPrice = basketCalculator.CalculatePrice(shoppingBasket);
 
             // write output
-            IBasketPriceWriter shoppingBacketConsoleOutput = new BasketPriceWriter();
-            return shoppingBacketConsoleOutput.GetOutputString(shoppingBasketPrice);
+            IBasketPriceWriter basketPriceWriter = new BasketPriceWriter();
+            return basketPriceWriter.GetOutputString(calculatedPrice);
         }
     }
 }

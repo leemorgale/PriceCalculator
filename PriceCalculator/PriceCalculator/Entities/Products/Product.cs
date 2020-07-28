@@ -1,4 +1,4 @@
-﻿namespace PriceCalculator.App.Entities.Product
+﻿namespace PriceCalculator.App.Entities.Products
 {
     public class Product
     {

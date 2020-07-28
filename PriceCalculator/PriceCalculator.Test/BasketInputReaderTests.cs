@@ -5,6 +5,7 @@ using PriceCalculator.App.App;
 using PriceCalculator.App.Entities.Basket;
 using PriceCalculator.App.Exceptions;
 using PriceCalculator.App.Interfaces;
+using PriceCalculator.Test.Helpers;
 
 namespace PriceCalculator.Test
 {
@@ -15,7 +16,7 @@ namespace PriceCalculator.Test
         public void CheckShoppingBasketAddProductToBasket()
         {
             string[] args = { "Apple", "Milk", "Bread" };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
             IBasketInputReader shoppingBasketInput = new BasketInputReader();
 
             ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, products);
@@ -27,11 +28,11 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void CheckInvalidInput_ThrowsInvalidInputException()
+        public void CheckInvalidInputThrowsInvalidInputException()
         {
             string input = "Not In Product";
             string[] args = { input };
-            var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
+            var products = TestDataHelper.GetProductsBeansBreadMilkApple();
             IBasketInputReader shoppingBasketInput = new BasketInputReader();
 
             try
@@ -45,7 +46,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void CheckNoProductToBuyIfNull_ThrowsNoProductToBuyException()
+        public void CheckNoProductToBuyIfNullThrowsNoProductToBuyException()
         {
             string input = "Not In Product";
             string[] args = { input };

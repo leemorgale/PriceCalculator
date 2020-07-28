@@ -3,7 +3,7 @@ using NuGet.Frameworks;
 using PriceCalculator.App;
 using PriceCalculator.App.App;
 using PriceCalculator.App.Entities.Basket;
-using PriceCalculator.App.Entities.Product;
+using PriceCalculator.App.Entities.Products;
 using PriceCalculator.App.Entities.SpecialOffers;
 using PriceCalculator.App.Exceptions;
 using PriceCalculator.App.Interfaces;
@@ -15,7 +15,7 @@ namespace PriceCalculator.Test
     public class SpecialOfferRuleTest
     {
         [TestMethod]
-        public void CheckSpecialOfferMatchRule_NullArgumentException()
+        public void CheckSpecialOfferMatchRuleNullArgumentException()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace PriceCalculator.Test
         }
 
         [TestMethod]
-        public void CheckSpecialOfferDiscountRule_NullArgumentException()
+        public void CheckSpecialOfferDiscountRuleNullArgumentException()
         {
             try
             {

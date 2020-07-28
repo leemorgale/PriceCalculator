@@ -1,13 +1,12 @@
 ﻿using PriceCalculator.App.Entities.SpecialOffers;
-using System;
 using System.Collections.Generic;
 
 namespace PriceCalculator.App.DataLayer
 {
-    public class SpecialOffers
+    public class SpecialOffersDL
     {
         private List<SpecialOfferRule> _specialOffers;
-        public SpecialOffers(List<SpecialOfferRule> specialOffers)
+        public SpecialOffersDL(List<SpecialOfferRule> specialOffers)
         {
             _specialOffers = specialOffers;
         }

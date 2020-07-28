@@ -1,15 +1,14 @@
-﻿using System;
+﻿using PriceCalculator.App.Entities.Products;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PriceCalculator.App.Entities.Basket
 {
     public class ShoppingBasket
     {
-        private readonly List<Product.Product> _products = new List<Product.Product>();
+        private readonly List<Product> _products = new List<Product>();
 
-        public void AddItem(Product.Product product)
+        public void AddItem(Product product)
         {
             _products.Add(product);
         }

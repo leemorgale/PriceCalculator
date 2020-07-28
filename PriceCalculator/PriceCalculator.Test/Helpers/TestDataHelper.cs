@@ -1,9 +1,7 @@
 ﻿using PriceCalculator.App.DataLayer;
 using PriceCalculator.App.Entities.Products;
 using PriceCalculator.App.Entities.SpecialOffers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PriceCalculator.Test.Helpers
 {

@@ -31,10 +31,10 @@ namespace PriceCalculator.App
                 SpecialOfferRule twoCans1BreadLoaf = new SpecialOfferRule(
                     new SpecialOfferMatchRule(productsDL.GetProductByName("beans"), 2),
                     new SpecialOfferDiscountRule(productsDL.GetProductByName("bread"), 50, 1));
-                SpecialOffersDL specialOffers = new SpecialOffersDL(new List<SpecialOfferRule>() { apples10percentOff, twoCans1BreadLoaf });
+                SpecialOffersDL specialOffersDL = new SpecialOffersDL(new List<SpecialOfferRule>() { apples10percentOff, twoCans1BreadLoaf });
 
                 // process user imput with products and special offers
-                IAppMain appMain = new AppMain(productsDL, specialOffers);
+                IAppMain appMain = new AppMain(productsDL, specialOffersDL);
                 string output = appMain.Process(args);
                 Console.WriteLine(output);
             }

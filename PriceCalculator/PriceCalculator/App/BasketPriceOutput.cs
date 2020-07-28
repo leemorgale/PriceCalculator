@@ -5,7 +5,7 @@ using System;
 
 namespace PriceCalculator.App.App
 {
-    public class BasketPriceOutput : IBasketPriceOutput
+    public class BasketPriceWriter : IBasketPriceWriter
     {
         public string GetOutputString(CalculatedPrice shoppingBasketPrice)
         {

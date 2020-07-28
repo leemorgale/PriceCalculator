@@ -6,9 +6,9 @@ using PriceCalculator.App.Exceptions;
 
 namespace PriceCalculator.App.App
 {
-    public class BasketInput : IBasketInput
+    public class BasketInputReader : IBasketInputReader
     {
-        public ShoppingBasket CreateShoppingBasketFromInput(string[] args, Products products)
+        public ShoppingBasket CreateBasketFromInput(string[] args, Products products)
         {
             ShoppingBasket shoppingBasket = new ShoppingBasket();
             foreach (var arg in args)

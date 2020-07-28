@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PriceCalculator.App.Interfaces
 {
-    public interface IBasketPriceOutput
+    public interface IBasketPriceWriter
     {
         string GetOutputString(CalculatedPrice shoppingBasketPrice);
     }

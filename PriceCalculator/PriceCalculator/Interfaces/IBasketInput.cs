@@ -3,8 +3,8 @@ using PriceCalculator.App.Entities.Basket;
 
 namespace PriceCalculator.App.Interfaces
 {
-    public interface IBasketInput
+    public interface IBasketInputReader
     {
-        ShoppingBasket CreateShoppingBasketFromInput(string[] args, Products products);
+        ShoppingBasket CreateBasketFromInput(string[] args, Products products);
     }
 }

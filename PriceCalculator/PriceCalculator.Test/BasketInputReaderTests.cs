@@ -9,16 +9,16 @@ using PriceCalculator.App.Interfaces;
 namespace PriceCalculator.Test
 {
     [TestClass]
-    public class ShoppingBasketInputTests
+    public class BasketInputReaderTests
     {
         [TestMethod]
         public void CheckShoppingBasketAddProductToBasket()
         {
             string[] args = { "Apple", "Milk", "Bread" };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            IBasketInput shoppingBasketInput = new BasketInput();
+            IBasketInputReader shoppingBasketInput = new BasketInputReader();
 
-            ShoppingBasket shoppingBasket = shoppingBasketInput.CreateShoppingBasketFromInput(args, products);
+            ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, products);
 
             Assert.IsTrue(shoppingBasket.GetItemCountById(products.GetProductByName("Apple").Id) == 1);
             Assert.IsTrue(shoppingBasket.GetItemCountById(products.GetProductByName("Milk").Id) == 1);
@@ -32,11 +32,11 @@ namespace PriceCalculator.Test
             string input = "Not In Product";
             string[] args = { input };
             var products = TestDataHelper.TestDataHelper.GetProductsBeansBreadMilkApple();
-            IBasketInput shoppingBasketInput = new BasketInput();
+            IBasketInputReader shoppingBasketInput = new BasketInputReader();
 
             try
             {
-                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateShoppingBasketFromInput(args, products);
+                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, products);
                 Assert.Fail("Should have thrown InvalidProductArgumentException exception");
             }catch (InvalidInputException ex)
             {

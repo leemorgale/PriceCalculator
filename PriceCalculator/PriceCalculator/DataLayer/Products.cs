@@ -12,11 +12,6 @@ namespace PriceCalculator.App.DataLayer
             _products = products;
         }
 
-        public Product GetProductById(int id)
-        {
-            return _products.FirstOrDefault(p => p.Id == id);
-        }
-
         public Product GetProductByName(string name)
         {
             return _products.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());

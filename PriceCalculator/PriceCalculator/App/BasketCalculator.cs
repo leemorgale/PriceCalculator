@@ -17,20 +17,22 @@ namespace PriceCalculator.App.App
 
         public CalculatedPrice CalculatePrice(ShoppingBasket shoppingBasket)
         {
-            // apply special offers to basket
             var appliedSpecialOffers = new List<SpecialOfferApplied>();
             var discountAmount = 0.0m;
+
+            // check if special offers apply to basket
             foreach (var specialOffer in _specialOffers.GetSpecialOfferRules())
             {
-                // calculate discount from special offer
                 decimal specialOfferDiscount = GetDiscountedAmount(specialOffer, shoppingBasket);
                 if (specialOfferDiscount > 0)
                 {
+                    // special offer is applied
                     discountAmount += specialOfferDiscount;
                     appliedSpecialOffers.Add(new SpecialOfferApplied(specialOffer, specialOfferDiscount));
                 }
             }
 
+            // add up total
             decimal subtotal = shoppingBasket.GetBasketPrice();
             decimal total = subtotal - discountAmount;
             return new CalculatedPrice(subtotal, total, appliedSpecialOffers);

@@ -34,7 +34,7 @@ namespace PriceCalculator.App
 
                 // process user imput with products and special offers
                 IAppMain appMain = new AppMain(productsDL, specialOffers);
-                var output = appMain.Process(args);
+                string output = appMain.Process(args);
                 Console.WriteLine(output);
             }
             catch (Exception ex)

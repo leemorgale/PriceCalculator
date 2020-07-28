@@ -8,6 +8,6 @@ namespace PriceCalculator.App.Interfaces
 {
     public interface IBasketCalculator
     {
-        ShoppingBasketPrice CalculatePrice(ShoppingBasket shoppingBasket);
+        CalculatedPrice CalculatePrice(ShoppingBasket shoppingBasket);
     }
 }

@@ -5,9 +5,9 @@ using System;
 
 namespace PriceCalculator.App.App
 {
-    public class ShoppingBasketPriceOutput : IShoppingBasketPriceOutput
+    public class BasketPriceOutput : IBasketPriceOutput
     {
-        public string GetOutputString(ShoppingBasketPrice shoppingBasketPrice)
+        public string GetOutputString(CalculatedPrice shoppingBasketPrice)
         {
             StringBuilder output = new StringBuilder();
             output.AppendLine("Subtotal: " + ToMoneyString(shoppingBasketPrice.Subtotal));

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace PriceCalculator.App.Entities.Basket
 {
-    public class ShoppingBasketPrice
+    public class CalculatedPrice
     {
-        public ShoppingBasketPrice(decimal subTotal, decimal total, List<SpecialOfferApplied> specialOfferApplieds)
+        public CalculatedPrice(decimal subTotal, decimal total, List<SpecialOfferApplied> specialOfferApplieds)
         {
             Total = total;
             Subtotal = subTotal;

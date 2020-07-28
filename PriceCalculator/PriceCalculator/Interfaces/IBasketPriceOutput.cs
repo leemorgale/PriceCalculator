@@ -6,8 +6,8 @@ using System.Text;
 
 namespace PriceCalculator.App.Interfaces
 {
-    public interface IShoppingBasketInput
+    public interface IBasketPriceOutput
     {
-        ShoppingBasket CreateShoppingBasket(string[] args, Products products);
+        string GetOutputString(CalculatedPrice shoppingBasketPrice);
     }
 }

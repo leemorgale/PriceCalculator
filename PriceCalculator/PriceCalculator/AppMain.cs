@@ -20,15 +20,16 @@ namespace PriceCalculator.App
         }
         public string Process(string[] args)
         {
-            IShoppingBasketInput shoppingBasketInput = new PriceCalculator.App.App.ShoppingBasketInput();
-            ShoppingBasket shoppingBasket = shoppingBasketInput.CreateShoppingBasket(args, _products);
+            // read input from user
+            IBasketInput shoppingBasketInput = new BasketInput();
+            ShoppingBasket shoppingBasket = shoppingBasketInput.CreateShoppingBasketFromInput(args, _products);
 
             // calculate snopping basket price
             IBasketCalculator basketCalculator = new BasketCalculator(_specialOffers);
-            ShoppingBasketPrice shoppingBasketPrice = basketCalculator.CalculatePrice(shoppingBasket);
+            CalculatedPrice shoppingBasketPrice = basketCalculator.CalculatePrice(shoppingBasket);
 
             // write output
-            IShoppingBasketPriceOutput shoppingBacketConsoleOutput = new ShoppingBasketPriceOutput();
+            IBasketPriceOutput shoppingBacketConsoleOutput = new BasketPriceOutput();
             return shoppingBacketConsoleOutput.GetOutputString(shoppingBasketPrice);
         }
     }

@@ -15,7 +15,7 @@ namespace PriceCalculator.App.App
             _specialOffers = specialOffers;
         }
 
-        public ShoppingBasketPrice CalculatePrice(ShoppingBasket shoppingBasket)
+        public CalculatedPrice CalculatePrice(ShoppingBasket shoppingBasket)
         {
             // apply special offers to basket
             var appliedSpecialOffers = new List<SpecialOfferApplied>();
@@ -33,7 +33,7 @@ namespace PriceCalculator.App.App
 
             decimal subtotal = shoppingBasket.GetBasketPrice();
             decimal total = subtotal - discountAmount;
-            return new ShoppingBasketPrice(subtotal, total, appliedSpecialOffers);
+            return new CalculatedPrice(subtotal, total, appliedSpecialOffers);
         }
 
         public decimal GetDiscountedAmount(SpecialOfferRule specialOfferRule, ShoppingBasket shoppingBasket)

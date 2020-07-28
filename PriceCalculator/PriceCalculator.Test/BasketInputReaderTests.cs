@@ -44,7 +44,8 @@ namespace PriceCalculator.Test
             }
         }
 
-        public void CheckInvalidInput_ThrowsNoProductToBuyException()
+        [TestMethod]
+        public void CheckInvalidInput_ThrowsInvalidInputExceptionn()
         {
             string input = "Not In Product";
             string[] args = { input };
@@ -53,7 +54,25 @@ namespace PriceCalculator.Test
 
             try
             {
-                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, products);
+                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, null);
+                Assert.Fail("Should have thrown InvalidProductArgumentException exception");
+            }
+            catch (InvalidInputException ex)
+            {
+                Assert.IsTrue(ex.Message.ToLower().Contains(input.ToLower()));
+            }
+        }
+
+        [TestMethod]
+        public void CheckNoProductToBuyIfNull_ThrowsNoProductToBuyException()
+        {
+            string input = "Not In Product";
+            string[] args = { input };
+            IBasketInputReader shoppingBasketInput = new BasketInputReader();
+
+            try
+            {
+                ShoppingBasket shoppingBasket = shoppingBasketInput.CreateBasketFromInput(args, null);
                 Assert.Fail("Should have thrown InvalidProductArgumentException exception");
             }
             catch (NoProductToBuyException ex)

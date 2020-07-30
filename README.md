@@ -1,3 +1,3 @@
 # PriceCalculator
 
-Quick application i wrote to calculate price of stop items based on special offer rules that get loaded.
+Quick application i wrote to calculate price of shop items based on special offer rules that get loaded.
